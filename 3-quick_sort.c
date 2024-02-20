@@ -25,20 +25,26 @@ int partition_arr(int *arr, int start, int end, size_t size)
 	int i, j, pivot;
 
 	pivot = arr[end];
-	i = start - 1;
+	i = start;
 
-	for (j = start; j <= end; j++)
+	for (j = start; j <= end - 1; j++)
 	{
 		if (arr[j] < pivot)
 		{
+			if (arr[i] != arr[j])
+			{
+				int_swap(&arr[i], &arr[j]);
+				print_array(arr, size);
+			}
 			i++;
-			int_swap(&arr[i], &arr[j]);
-			print_array(arr, size);
 		}
 	}
-	int_swap(&arr[i + 1], &arr[end]);
-	print_array(arr, size);
-	return (i + 1);
+	if (arr[i] != arr[end])
+	{
+		int_swap(&arr[i], &arr[end]);
+		print_array(arr, size);
+	}
+	return (i);
 }
 
 /**

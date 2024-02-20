@@ -16,14 +16,14 @@ void int_swap(int *xp, int *yp)
  *@arr: The array to partition
  *@start: The start of the array
  *@end: The end of the array
+ *@size: The size of the array
  *
  *Return: the index of the pivot
  */
-int partition_arr(int *arr, int start, int end)
+int partition_arr(int *arr, int start, int end, size_t size)
 {
 	int i, j, pivot;
 
-	/*size = sizeof(arr) / sizeof(arr[0]);*/
 	pivot = arr[end];
 	i = start - 1;
 
@@ -33,12 +33,11 @@ int partition_arr(int *arr, int start, int end)
 		{
 			i++;
 			int_swap(&arr[i], &arr[j]);
-			if (arr[i] != arr[j])
-				print_array(arr, end - start + 1);
+			print_array(arr, size);
 		}
 	}
 	int_swap(&arr[i + 1], &arr[end]);
-	print_array(arr, end - start + 1);
+	print_array(arr, size);
 	return (i + 1);
 }
 
@@ -48,16 +47,17 @@ int partition_arr(int *arr, int start, int end)
  *@arr: The array to sort
  *@start: The start of the array
  *@end: The end of the array
+ *@size: The size of the array
  */
-void quick_sort_arr(int *arr, int start, int end)
+void quick_sort_arr(int *arr, int start, int end, size_t size)
 {
 	int pi;
 
 	if (start < end)
 	{
-		pi = partition_arr(arr, start, end);
-		quick_sort_arr(arr, start, pi - 1);
-		quick_sort_arr(arr, pi + 1, end);
+		pi = partition_arr(arr, start, end, size);
+		quick_sort_arr(arr, start, pi - 1, size);
+		quick_sort_arr(arr, pi + 1, end, size);
 	}
 }
 
@@ -69,5 +69,5 @@ void quick_sort_arr(int *arr, int start, int end)
  */
 void quick_sort(int *array, size_t size)
 {
-	quick_sort_arr(array, 0, size - 1);
+	quick_sort_arr(array, 0, size - 1, size);
 }

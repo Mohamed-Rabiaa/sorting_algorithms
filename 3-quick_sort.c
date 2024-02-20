@@ -16,6 +16,7 @@ void int_swap(int *xp, int *yp)
  *@arr: The array to partition
  *@start: The start of the array
  *@end: The end of the array
+ *@size: The size of the array
  *
  *Return: the index of the pivot
  */
@@ -32,8 +33,7 @@ int partition_arr(int *arr, int start, int end, size_t size)
 		{
 			i++;
 			int_swap(&arr[i], &arr[j]);
-			if (arr[i] != arr[j])
-				print_array(arr, size);
+			print_array(arr, size);
 		}
 	}
 	int_swap(&arr[i + 1], &arr[end]);
@@ -47,6 +47,7 @@ int partition_arr(int *arr, int start, int end, size_t size)
  *@arr: The array to sort
  *@start: The start of the array
  *@end: The end of the array
+ *@size: The size of the array
  */
 void quick_sort_arr(int *arr, int start, int end, size_t size)
 {
